@@ -68,49 +68,81 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
+
     <Button
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:text="REGISTER"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/teal_700"
+        android:text="REGISTER"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone" />
+        app:layout_constraintTop_toBottomOf="@+id/gender" />
 
     <Button
         android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:text="CANCEL"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+
         android:backgroundTint="@color/teal_700"
+        android:text="CANCEL"
         app:layout_constraintStart_toEndOf="@+id/register"
-        app:layout_constraintTop_toBottomOf="@+id/phone" />
+        app:layout_constraintTop_toBottomOf="@+id/gender" />
+
 
     <Button
         android:id="@+id/backToLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:text="BACK TO LOGIN"
         android:backgroundTint="@color/teal_700"
+        android:text="BACK TO LOGIN"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register" />
 
-    <Button
-        android:id="@+id/viewButton"
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
+        android:id="@+id/gender"
         android:backgroundTint="@color/teal_700"
-        android:text="VIEW"
-        app:layout_constraintStart_toEndOf="@+id/backToLogin"
-        app:layout_constraintTop_toBottomOf="@+id/cancelButton" />
+        app:layout_constraintTop_toBottomOf="@id/phone"
+        app:layout_constraintLeft_toLeftOf="parent" >
+
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:backgroundTint="@color/teal_700"
+            app:layout_constraintTop_toBottomOf="@id/phone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:ems="10"
+
+
+            />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            app:layout_constraintTop_toBottomOf="@id/phone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:backgroundTint="@color/teal_700"
+            android:ems="10"
+
+
+
+            />
+    </RadioGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

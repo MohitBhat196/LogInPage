@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;
@@ -21,6 +23,9 @@ public class SignUp extends AppCompatActivity {
     EditText password;
     EditText phone;
     DBHandler db;
+    RadioGroup gender;
+    RadioButton gMale, gFemale;
+    String gender1 = "";
 
 
     @Override
@@ -29,13 +34,31 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         setTitle("SIGNUP");
 
+        gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+
+        {
+            @Override
+            public void onCheckedChanged (RadioGroup radioGroup,int i){
+                if (i == R.id.male) {
+                    gender1 = "Male";
+                } else if (i == R.id.female) {
+                    gender1 = "Female";
+                }
+            }
+        });
+
         firstName = findViewById(R.id.firstName);
         lastName = findViewById(R.id.lastName);
         emailId = findViewById(R.id.email1);
         password = findViewById(R.id.password);
         phone = findViewById(R.id.phone);
+        gender = findViewById(R.id.gender);
+        gMale = findViewById(R.id.male);
+        gFemale = findViewById(R.id.female);
+
+
         Button register = findViewById(R.id.register);
-        Button view = findViewById(R.id.viewButton);
+        //Button view = findViewById(R.id.viewButton);
 
         Button cancelButton = findViewById(R.id.cancelButton);
 
@@ -45,11 +68,13 @@ public class SignUp extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String firstNameValue = firstName.getText().toString();
                 String lastNameValue = lastName.getText().toString();
                 String email1Value = emailId.getText().toString();
                 String password1Value = password.getText().toString();
                 String phoneValue = phone.getText().toString();
+
 
                 Pattern names = Pattern.compile("^[a-zA-Z]+$");
                 Pattern mobileNumber = Pattern.compile("^[0-9]{10}+$");
@@ -78,7 +103,7 @@ public class SignUp extends AppCompatActivity {
 
                 if (!firstNameValueMatches || !lastNameValueMatches || !email1ValueMatches || !phoneValueMatches || !password1ValueMatches) {
                     if (!firstNameValueMatches) {
-                        Toast.makeText(SignUp.this, "Please enter your First Name correctly", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUp.this, "Please enter your First Name correctly", Toast.LENGTH_SHORT).show();
                     } else if (!lastNameValueMatches) {
                         Toast.makeText(SignUp.this, "Please enter your Last Name correctly", Toast.LENGTH_LONG).show();
                     } else if (!email1ValueMatches) {
@@ -89,29 +114,28 @@ public class SignUp extends AppCompatActivity {
                     } else if (!password1ValueMatches) {
                         Toast.makeText(SignUp.this, "Use at least one lowercase, one uppercase, one special character and one number", Toast.LENGTH_LONG).show();
                     }
-                } else {
-
-                    //if (firstNameValue.equals("") || lastNameValue.equals("") || email1Value.equals("") || password1Value.equals("") || phoneValue.equals("")) {
-                    //Toast.makeText(SignUp.this, "FILL REQUIRED DETAILS", Toast.LENGTH_SHORT).show();
-                    Boolean checkEmailId = db.checkEmail(email1Value);
-                    if (checkEmailId == false) {
-                        boolean isInserted = db.Insert(email1Value, password1Value, firstNameValue, lastNameValue, phoneValue);
-                        if (isInserted == true) {
-                            Toast.makeText(SignUp.this, "REGISTERED", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(SignUp.this, "NOT REGISTERED", Toast.LENGTH_SHORT).show();
-
-
-                        }
                     } else {
-                        Toast.makeText(SignUp.this, "ALREADY REGISTERED", Toast.LENGTH_SHORT).show();
+                        Boolean checkEmailId = db.checkEmail(email1Value);
+                            if (checkEmailId == false) {
+                                boolean isInserted = db.Insert(email1Value, password1Value, firstNameValue, lastNameValue, phoneValue, gender1);
+                                if (isInserted == true) {
+                                    Toast.makeText(SignUp.this, "REGISTERED", Toast.LENGTH_SHORT).show();
+                                } else {
+                                  Toast.makeText(SignUp.this, "NOT REGISTERED", Toast.LENGTH_SHORT).show();
+
+                                }
+                        } else {
+                            Toast.makeText(SignUp.this, "ALREADY REGISTERED", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
-
                 }
-            }
-          });
+            });
 
-        view.setOnClickListener(new View.OnClickListener() {
+
+
+
+        /*view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Cursor cursor = db.getData();
@@ -133,7 +157,8 @@ public class SignUp extends AppCompatActivity {
 
 
 
-        });
+        });*/
+
 
 
 
@@ -157,6 +182,7 @@ public class SignUp extends AppCompatActivity {
 
 
 
+
         }
     public void emptyField() {
         firstName.setText("");
@@ -166,7 +192,9 @@ public class SignUp extends AppCompatActivity {
         phone.setText("");
     }
 
-    public void showMessage(String title, String Message) {
+
+
+    /*public void showMessage(String title, String Message) {
       AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
@@ -174,7 +202,7 @@ public class SignUp extends AppCompatActivity {
         builder.show();
 
 
-    }
+    }*/
 
 
 }

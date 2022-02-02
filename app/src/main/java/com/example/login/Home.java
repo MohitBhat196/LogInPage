@@ -1,6 +1,8 @@
 package com.example.login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,9 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
+
 public class Home extends AppCompatActivity {
-    SharedPreferences preferences;
-    TextView emailValue;
+    TabLayout tabLayout;
+    ViewPager2 pager2;
+    FragmentAdapter adapter;
 
 
     @Override
@@ -19,28 +24,39 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        emailValue = findViewById(R.id.showEmail);
-        Button logOut = findViewById(R.id.logOutButton);
+        tabLayout = findViewById(R.id.tab_layout);
+        pager2 = findViewById(R.id.view_pager);
 
-        preferences = getSharedPreferences("SHARED_PREFER",MODE_PRIVATE);
+        FragmentManager fManager = getSupportFragmentManager();
+        adapter = new FragmentAdapter(fManager, getLifecycle());
 
-        String mail = preferences.getString("EMAIL", "");
-        emailValue.setText(mail);
+        tabLayout.addTab(tabLayout.newTab().setText("MALE"));
+        tabLayout.addTab(tabLayout.newTab().setText("FEMALE"));
+        tabLayout.addTab(tabLayout.newTab().setText("USER"));
 
-        logOut.setOnClickListener(new View.OnClickListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View view) {
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.clear();
-                editor.apply();
+            public void onTabSelected(TabLayout.Tab tab) {
 
-                Intent i = new Intent(Home.this, LoginActivity.class);
-                startActivity(i);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
 
-
-
+        pager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                tabLayout.selectTab(tabLayout.getTabAt(position));
+            }
+        });
 
     }
 }

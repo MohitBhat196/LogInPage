@@ -18,6 +18,8 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox stayLoggedIn;
     boolean isLoggedIn;
 
+    private static final String KEY_EMAIL = "e_mail";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,10 @@ public class LoginActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("SHARED_PREFER", MODE_PRIVATE);
 
+        String emailid = sharedPreferences.getString(KEY_EMAIL, null);
+
         isLoggedIn = sharedPreferences.getBoolean("CHECK", false);
+
 
 
         logIn.setOnClickListener(new View.OnClickListener() {
@@ -43,20 +48,26 @@ public class LoginActivity extends AppCompatActivity {
                 String passwordValue = password.getText().toString();
                 boolean checked = stayLoggedIn.isChecked();
 
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                editor.putString("EMAIL", emailValue);
-                editor.putString("PASS", passwordValue);
-                editor.putBoolean("CHECK", checked);
-
-                editor.apply();
 
 
-                Intent i = new Intent(LoginActivity.this, Home.class);
-                startActivity(i);
-
-
-
+                if(emailValue.equals("") || passwordValue.equals("")){
+                    Toast.makeText(LoginActivity.this, "Fill The Required Details", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Boolean loginResult = db.checkLoginUser(emailValue,passwordValue);
+                    if(loginResult == true){
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(KEY_EMAIL,emailValue);
+                        editor.putString("PASS", passwordValue);
+                        editor.putBoolean("CHECK", checked);
+                        editor.apply();
+                        Intent intent = new Intent(LoginActivity.this, Home.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(LoginActivity.this, "Please Sign Up first!!!", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
