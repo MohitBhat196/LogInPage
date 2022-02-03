@@ -25,11 +25,11 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         tabLayout = findViewById(R.id.tab_layout);
-        pager2 = findViewById(R.id.view_pager);
+        pager2 = findViewById(R.id.viewPager);
 
         FragmentManager fManager = getSupportFragmentManager();
         adapter = new FragmentAdapter(fManager, getLifecycle());
-
+        pager2.setAdapter(adapter);
         tabLayout.addTab(tabLayout.newTab().setText("MALE"));
         tabLayout.addTab(tabLayout.newTab().setText("FEMALE"));
         tabLayout.addTab(tabLayout.newTab().setText("USER"));
@@ -38,6 +38,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
+                    pager2.setCurrentItem(tab.getPosition());
             }
 
             @Override

@@ -13,10 +13,10 @@
         android:theme="@style/Theme.LogIN"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".UserList"
+            android:name=".Home"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".UserList"
             android:exported="false" />
         <activity
             android:name=".SignUp"

@@ -34,18 +34,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         setTitle("SIGNUP");
 
-        gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
 
-        {
-            @Override
-            public void onCheckedChanged (RadioGroup radioGroup,int i){
-                if (i == R.id.male) {
-                    gender1 = "Male";
-                } else if (i == R.id.female) {
-                    gender1 = "Female";
-                }
-            }
-        });
 
         firstName = findViewById(R.id.firstName);
         lastName = findViewById(R.id.lastName);
@@ -74,6 +63,7 @@ public class SignUp extends AppCompatActivity {
                 String email1Value = emailId.getText().toString();
                 String password1Value = password.getText().toString();
                 String phoneValue = phone.getText().toString();
+                String gender = gender1;
 
 
                 Pattern names = Pattern.compile("^[a-zA-Z]+$");
@@ -117,7 +107,7 @@ public class SignUp extends AppCompatActivity {
                     } else {
                         Boolean checkEmailId = db.checkEmail(email1Value);
                             if (checkEmailId == false) {
-                                boolean isInserted = db.Insert(email1Value, password1Value, firstNameValue, lastNameValue, phoneValue, gender1);
+                                boolean isInserted = db.Insert(firstNameValue, lastNameValue, email1Value, phoneValue, password1Value, gender);
                                 if (isInserted == true) {
                                     Toast.makeText(SignUp.this, "REGISTERED", Toast.LENGTH_SHORT).show();
                                 } else {
@@ -131,6 +121,20 @@ public class SignUp extends AppCompatActivity {
                     }
                 }
             });
+
+        gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+
+        {
+            @Override
+            public void onCheckedChanged (RadioGroup radioGroup,int i){
+                if (i == R.id.male) {
+                    gender1 = "Male";
+                } else if (i == R.id.female) {
+                    gender1 = "Female";
+                }
+            }
+        });
+
 
 
 
@@ -158,6 +162,7 @@ public class SignUp extends AppCompatActivity {
 
 
         });*/
+
 
 
 

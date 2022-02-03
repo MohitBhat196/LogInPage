@@ -1,134 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ThirdFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Welcome"
-        android:textColor="@color/design_default_color_primary_dark"
-        android:textSize="25sp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/welcome"
+            android:backgroundTint="@color/teal_700"
+            android:textColor="@color/teal_700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Welcome"
+            android:textSize="25sp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/emailView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:textSize="25sp"
-        android:text="TextView"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome" />
+        <TextView
+            android:id="@+id/emailView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:textSize="25sp"
+            android:text="TextView"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcome" />
 
-    <TextView
-        android:id="@+id/FirstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="First Name - "
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailView" />
+        <TextView
+            android:id="@+id/FirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="First Name - "
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailView" />
 
-    <TextView
-        android:id="@+id/firstNameView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="First Name"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/FirstName"
-        app:layout_constraintTop_toBottomOf="@+id/emailView" />
+        <TextView
+            android:id="@+id/firstNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="First Name"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/FirstName"
+            app:layout_constraintTop_toBottomOf="@+id/emailView" />
 
-    <TextView
-        android:id="@+id/LastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="Last Name - "
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FirstName" />
+        <TextView
+            android:id="@+id/LastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="Last Name - "
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/FirstName" />
 
-    <TextView
-        android:id="@+id/lastNameView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Last Name"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/LastName"
-        app:layout_constraintTop_toBottomOf="@+id/firstNameView" />
+        <TextView
+            android:id="@+id/lastNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Last Name"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/LastName"
+            app:layout_constraintTop_toBottomOf="@+id/firstNameView" />
 
-    <TextView
-        android:id="@+id/mobile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="Mobile Number - "
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LastName" />
+        <TextView
+            android:id="@+id/mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="Mobile Number - "
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LastName" />
 
-    <TextView
-        android:id="@+id/mobileView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Number"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/mobile"
-        app:layout_constraintTop_toBottomOf="@+id/lastNameView" />
+        <TextView
+            android:id="@+id/mobileView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Number"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/mobile"
+            app:layout_constraintTop_toBottomOf="@+id/lastNameView" />
 
-    <TextView
-        android:id="@+id/Gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="Gender - "
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mobile" />
+        <TextView
+            android:id="@+id/Gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="Gender - "
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mobile" />
 
-    <TextView
-        android:id="@+id/genderView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="gender"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/Gender"
-        app:layout_constraintTop_toBottomOf="@+id/mobileView" />
+        <TextView
+            android:id="@+id/genderView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="gender"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/Gender"
+            app:layout_constraintTop_toBottomOf="@+id/mobileView" />
 
-    <Button
-        android:id="@+id/logOutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOGOUT"
-        android:layout_marginTop="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genderView" />
+        <Button
+            android:id="@+id/logOutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LOGOUT"
+            android:backgroundTint="@color/teal_700"
+            android:layout_marginTop="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genderView" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

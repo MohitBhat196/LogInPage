@@ -32,17 +32,6 @@
             android:id="@+id/cardEmail"
             app:layout_constraintTop_toBottomOf="@id/cardLastName"
             app:layout_constraintLeft_toLeftOf="parent"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="phone"
-            android:textSize="25sp"
-            android:id="@+id/cardPhone"
-            app:layout_constraintTop_toBottomOf="@id/cardEmail"
-            app:layout_constraintLeft_toLeftOf="parent"/>
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

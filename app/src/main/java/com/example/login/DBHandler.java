@@ -5,15 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.EditText;
-
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
 public class DBHandler extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "loginUser.db";
-    public static final String TABLE_NAME = "USER";
+    public static final String TABLE_NAME = "user";
 
 
     public DBHandler(Context context) {
@@ -42,7 +39,7 @@ public class DBHandler extends SQLiteOpenHelper {
         contentValues.put("phone", phone);
         contentValues.put("password", password);
         contentValues.put("gender", gender);
-        long result = db.insert("user", null, contentValues);
+        long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1) {
             return false;
         } else {
@@ -81,21 +78,21 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public ArrayList<ModelClass> getUserData(String gender){
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<ModelClass> modelClassArrayList = new ArrayList<>();
+        ArrayList<ModelClass> arrayList = new ArrayList<>();
 
         Cursor cursor = db.rawQuery("select * from user where gender like '" + gender + "'", null);
         if(cursor.getCount() != 0){
             cursor.moveToPosition(-1);
 
             while (cursor.moveToNext()){
-                String user_firstName = cursor.getString(0);
-                String user_lastName = cursor.getString(1);
-                String user_email = cursor.getString(2);
-                String user_phone = cursor.getString(3);
+                String user_firstName = cursor.getString(1);
+                String user_lastName = cursor.getString(2);
+                String user_email = cursor.getString(3);
+                String user_gender = cursor.getString(4);
 
-                modelClassArrayList.add(new ModelClass(user_firstName, user_lastName, user_email, user_phone));
+                arrayList.add(new ModelClass(user_firstName, user_lastName, user_email, user_gender));
             }
-            return modelClassArrayList;
+            return arrayList;
         }
         else {
             return null;

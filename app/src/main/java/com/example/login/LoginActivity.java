@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox stayLoggedIn;
     boolean isLoggedIn;
 
-    private static final String KEY_EMAIL = "e_mail";
+    private static final String KEY_EMAIL = "email";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +35,14 @@ public class LoginActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("SHARED_PREFER", MODE_PRIVATE);
 
-        String emailid = sharedPreferences.getString(KEY_EMAIL, null);
+        String emailId = sharedPreferences.getString(KEY_EMAIL, null);
 
         isLoggedIn = sharedPreferences.getBoolean("CHECK", false);
+
+        if(emailId != null){
+            Intent intent = new Intent(LoginActivity.this, Home.class);
+            startActivity(intent);
+        }
 
 
 

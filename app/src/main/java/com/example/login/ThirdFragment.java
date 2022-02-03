@@ -29,11 +29,7 @@ public class ThirdFragment extends Fragment {
     TextView mobile;
     Button logout;
 
-    private static final String KEY_EMAIL = "e_mail";
-
-
-
-
+    private static final String KEY_EMAIL = "email";
 
     public ThirdFragment() {
         // Required empty public constructor
@@ -43,60 +39,56 @@ public class ThirdFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
-        View  v = inflater.inflate(R.layout.fragment_third, container, false);
-
-        FirstName = v.findViewById(R.id.FirstName);
-        firstNameView = v.findViewById(R.id.firstNameView);
-        LastName = v.findViewById(R.id.LastName);
-        lastNameView = v.findViewById(R.id.lastNameView);
-        mobile = v.findViewById(R.id.mobile);
-        mobileView = v.findViewById(R.id.mobileView);
-        emailView = v.findViewById(R.id.emailView);
-        Gender = v.findViewById(R.id.Gender);
-        genderView = v.findViewById(R.id.genderView);
-        logout = v.findViewById(R.id.logOutButton);
+        View  view = inflater.inflate(R.layout.fragment_third, container, false);
+        firstNameView = view.findViewById(R.id.firstNameView);
+        lastNameView = view.findViewById(R.id.lastNameView);
+        emailView = view.findViewById(R.id.emailView);
+        mobileView = view.findViewById(R.id.mobileView);
+        genderView = view.findViewById(R.id.genderView);
+        FirstName = view.findViewById(R.id.FirstName);
+        LastName = view.findViewById(R.id.LastName);
+        mobile = view.findViewById(R.id.mobile);
+        Gender = view.findViewById(R.id.Gender);
+        logout = view.findViewById(R.id.logOutButton);
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SHARED_PREFER", MODE_PRIVATE);
 
-        String emailid = sharedPreferences.getString(KEY_EMAIL, null);
+        String emailId = sharedPreferences.getString(KEY_EMAIL, null);
 
-        if(emailid != null){
-            emailView.setText(emailid);
+        if(emailId != null){
+            emailView.setText(emailId);
         }
 
 
-        DBHandler myDB = new DBHandler(getContext());
-        SQLiteDatabase database = myDB.getReadableDatabase();
-
-        Cursor userDetails = database.rawQuery("select * from user where emailid LIKE '" + emailid + "'", null);
+        DBHandler db = new DBHandler(getContext());
+        SQLiteDatabase database = db.getReadableDatabase();
+        Cursor userDetails = database.rawQuery("select * from user where emailid LIKE '" + emailId + "'", null);
         userDetails.moveToFirst();
 
 
         do{
-            firstNameView.setText(userDetails.getString(0));
-            lastNameView.setText(userDetails.getString(1));
-            genderView.setText(userDetails.getString(5));
-            emailView.setText(userDetails.getString(2));
-            mobileView.setText(userDetails.getString(3));
+            firstNameView.setText(userDetails.getString(1));
+            lastNameView.setText(userDetails.getString(2));
+            emailView.setText(userDetails.getString(3));
+            genderView.setText(userDetails.getString(6));
+            mobileView.setText(userDetails.getString(5));
         }
         while(userDetails.moveToNext());
 
-        myDB.close();
+        db.close();
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
-                editor.commit();
+                editor.apply();
                 startActivity(new Intent(getContext(), LoginActivity.class));
                 getActivity().finish();
             }
@@ -105,6 +97,8 @@ public class ThirdFragment extends Fragment {
 
 
 
-        return v ;
+        return view ;
+
+
     }
 }

@@ -10,34 +10,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SecondFragment extends Fragment{
+public class SecondFragment extends Fragment {
 
-    RecyclerView femaleView;
+    RecyclerView femaleUsersView;
     UserListAdapter adapter;
 
-    public SecondFragment(){
 
+
+    public SecondFragment() {
+        // Required empty public constructor
     }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_second, container, false);
-        femaleView = view.findViewById(R.id.femaleView);
+        View view = inflater.inflate(R.layout.fragment_second, container, false);
+        femaleUsersView = view.findViewById(R.id.femaleUsersView);
 
-        DBHandler db = new DBHandler(getContext());
-        adapter = new UserListAdapter(db.getUserData("Female"),getContext());
+        DBHandler myDB = new DBHandler(getContext());
+        adapter = new UserListAdapter(myDB.getUserData("Female"), getContext());
 
-        femaleView.setLayoutManager(new LinearLayoutManager(getContext()));
+        femaleUsersView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        femaleView.setAdapter(adapter);
-
+        femaleUsersView.setAdapter(adapter);
 
         return view;
+
     }
 }
