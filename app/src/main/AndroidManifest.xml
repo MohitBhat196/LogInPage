@@ -13,8 +13,12 @@
         android:theme="@style/Theme.LogIN"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Home"
+            android:name=".BottomNavigation"
             android:exported="false" />
+        <activity
+            android:name=".Home"
+            android:exported="false"
+            android:theme="@style/Theme.LogIN.NoActionBar"/>
         <activity
             android:name=".UserList"
             android:exported="false" />

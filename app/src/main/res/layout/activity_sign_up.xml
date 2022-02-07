@@ -8,12 +8,16 @@
     android:layout_height="match_parent"
     tools:context=".SignUp">
 
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar"
+        />
+
 
     <EditText
         android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="80dp"
         android:layout_marginLeft="20dp"
         android:ems="10"
         android:hint="First Name"
